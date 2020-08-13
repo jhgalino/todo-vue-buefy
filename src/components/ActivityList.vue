@@ -1,29 +1,42 @@
 <template>
-  <div><b-table :data="data" :columns="columns"></b-table></div
-></template>
+  <div>
+    <ul>
+      <li v-for="(todo, index) in todos" :key="index">
+        <todos :text="todo" @delete="deleteItem($event)"></todos>
+      </li>
+    </ul>
+  </div>
+</template>
 
 <script>
+import todos from "./Activity";
+
 export default {
-  props: {
-    submittedTodo: String,
-  },
   data() {
     return {
-      data: [],
-      columns: [
-        {
-          field: "todo",
-          numeric: false,
-        },
-      ],
+      todos: [],
     };
   },
+  props: {
+    content: String,
+  },
+  components: {
+    todos,
+  },
   watch: {
-    submittedTodo: function(newval) {
-      this.data.push({ todo: newval });
+    content: function (newval) {
+      if (this.content != "") {
+        this.todos.push(newval);
+      }
+    },
+  },
+  methods: {
+    deleteItem(value) {
+      this.todos = this.todos.filter((x) => x != value);
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

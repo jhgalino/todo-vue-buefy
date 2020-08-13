@@ -2,8 +2,10 @@
   <div class="columns">
     <div class="column"></div>
     <div class="column is-two-thirds">
-      <inputField @submitTodo="passToList"></inputField>
-      <activityList :submittedTodo="todo"></activityList>
+      <h1 class="content is-size-1 has-text-centered">To-do</h1>
+      <inputField @submitTodo="submitTodo"></inputField>
+      <br />
+      <activityList :content="todo"></activityList>
     </div>
     <div class="column"></div>
   </div>
@@ -24,11 +26,12 @@ export default {
     activityList,
   },
   methods: {
-    passToList(value) {
+    submitTodo(value) {
       this.todo = value;
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

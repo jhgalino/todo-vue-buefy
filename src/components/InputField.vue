@@ -10,7 +10,7 @@
         @keyup.native.enter="submit"
       ></b-input>
       <p class="control">
-        <b-button class="button is-large" @click="submit">Add</b-button>
+        <b-button type="submit" class="button is-large" @click="submit">Add</b-button>
       </p>
     </b-field>
   </div>
@@ -18,14 +18,16 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       input: "",
     };
   },
   methods: {
     submit() {
-      this.$emit("submitTodo", this.input);
+      if (this.input != "") {
+        this.$emit("submitTodo", this.input);
+      }
     },
   },
 };
